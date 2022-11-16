@@ -1,0 +1,16 @@
+{
+  "name": "wadit",
+  "version": "0.0.1",
+  "description": "Compress and decompress development assets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "iamjafran",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^5.3.1",
+    "cli-progress": "^3.11.2"
+  }
+}
