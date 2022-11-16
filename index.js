@@ -1,3 +1,4 @@
-const Wadit = require ("./Wadit/Wadit.js");
-
-console.log(Wadit);
+#! /usr/bin/env node
+const CLI = require ("./Wad/CLI.js");
+const cli = new CLI(); 
+cli.Run()
