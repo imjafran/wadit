@@ -1,16 +1,29 @@
 {
   "name": "wadit",
   "version": "0.0.1",
-  "description": "Compress and decompress development assets",
+  "description": "Build or compress current working directory within a single command",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "wadit": "index.js"
   },
-  "keywords": [],
+  "scripts": {
+    "link": "npm link"
+  },
+  "keywords": [
+    "wad",
+    "compress", 
+    "zip",
+    "tar",
+    "wadit",
+    "devops",
+    "development",
+    "dev"
+  ],
   "author": "iamjafran",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "dependencies": {
     "archiver": "^5.3.1",
-    "cli-progress": "^3.11.2"
+    "chalk": "^4.1.2",
+    "loading-cli": "^1.1.0"
   }
 }
