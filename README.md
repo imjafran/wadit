@@ -14,6 +14,8 @@ npm i -g wadit
 ```
 *Install Wadit globally to use CLI functionalities from your terminal*
 
+#### [Published on npmjs](https://www.npmjs.com/package/wadit)
+
 ## 
 
 ### Build
