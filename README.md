@@ -92,6 +92,6 @@ Element of Before and After array must be either executable command of the syste
  
 ## Contribution
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-Make a request at [Wadit GIT](https://github.com/appdets/wadit) on github public repository
+Make a request at [Wadit GIT](https://github.com/imjafran/wadit) on github public repository
 <br> 
 Published by [Jafran Hasan](https://fb.com/IamJafran) 
