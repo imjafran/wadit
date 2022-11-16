@@ -1,3 +1,4 @@
-const Wadit = require ("./Wadit/Wadit.js");
-
-console.log(Wadit);
+const Wad = require ("./Wad/Wad.js");
+const wad = new Wad();
+// console.log(wad.Input);
+wad.Compress()
