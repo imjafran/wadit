@@ -3,6 +3,7 @@ const path = require("path");
 const archiver = require("archiver");
 const chalk = require("chalk");
 const { Loader, Log } = require("./Helper");
+const glob = require("glob");
 
 class Wad {
   _ConfigFile = "wadit.config.js";
@@ -54,6 +55,7 @@ class Wad {
       "vue.config.js",
       "nuxt.config.js",
       ".vscode",
+      "phpcs.xml",
     ];
 
     // check if files exists
@@ -162,12 +164,11 @@ class Wad {
 
   getSize(bytes) {
     const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-    if (bytes == 0) return "0 Byte"; 
+    if (bytes == 0) return "0 Byte";
 
-    // to 2 decimal places 
+    // to 2 decimal places
     const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
     return Math.round(bytes / Math.pow(1024, i), 2) + " " + sizes[i];
-    
   }
 
   Execute(commands, args = []) {
@@ -209,10 +210,37 @@ class Wad {
     return `${ms} ms`;
   }
 
+  ValidateSource() {
+    const Directory = glob.sync(this.Input, {
+      cwd: this.Dir,
+      ignore: this.Excludes,
+      // only directory
+      onlyDirectories: true,
+    });
+
+    // check if input path exists
+    if (Directory.length === 0) {
+      Loader.fail(chalk.yellow(`${chalk.bold(this.Input)} does not exist!`));
+      return false;
+    }
+
+    // check if its empty directory
+    const filesInsideDirectory = glob.sync("**", {
+      cwd: path.join(this.Dir, this.Input),
+      ignore: this.Excludes,
+    });
+
+    if (filesInsideDirectory.length === 0) {
+      Loader.fail(chalk.yellow(`${chalk.bold(this.Input)} is empty!`));
+      return false;
+    }
+
+    return true;
+  }
+
   Build() {
-    const Output = fs.createWriteStream(
-      path.join(this.Dir, this.Config.output)
-    );
+    // validate source
+    if (!this.ValidateSource()) return false;
 
     Loader.start(chalk.yellow("Compressing..."));
 
@@ -223,6 +251,10 @@ class Wad {
     const archive = archiver("zip", {
       zlib: { level: this.Config.compress_level || 9 }, // Sets the compression level.
     });
+
+    const Output = fs.createWriteStream(
+      path.join(this.Dir, this.Config.output)
+    );
 
     archive.pipe(Output);
 
@@ -246,9 +278,9 @@ class Wad {
 
       const message = chalk.green(
         `
-✔ Built ${chalk.yellow(this.Config.output)} ; Size: ${chalk.yellow(
+✔ Built ${chalk.yellow.bold(this.Config.output)} ; Size: ${chalk.yellow.bold(
           this.getSize(archive.pointer())
-        )} ; Time: ${chalk.yellow(time)}
+        )} ; Time: ${chalk.yellow.bold(time)}
 `
       );
       Log.success(message);

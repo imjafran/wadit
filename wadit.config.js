@@ -1,6 +1,6 @@
 module.exports = {
-  "input": "**",
-  "output": "wadit.zip",
+  "input": "test",
+  "output": "sample.zip",
   "excludes": [
     "node_modules/**",
     ".git",
@@ -8,7 +8,7 @@ module.exports = {
     "package-lock.json",
     "package.json",
     "wad.config.js",
-    "wadit.zip"
+    "sample.zip"
   ],
   "compress_level": 9,
   "before": [],

@@ -1,6 +1,6 @@
 {
   "name": "wadit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Build or compress current working directory within a single command",
   "main": "index.js",
   "bin": {
