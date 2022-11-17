@@ -1,5 +1,5 @@
 module.exports = {
-  "input": "test",
+  "input": "",
   "output": "sample.zip",
   "excludes": [
     "node_modules/**",

@@ -213,24 +213,21 @@ class Wad {
   ValidateSource() {
     const Directory = glob.sync(this.Input, {
       cwd: this.Dir,
-      ignore: this.Excludes,
-      // only directory
-      onlyDirectories: true,
+      ignore: this.Excludes, 
     });
 
     // check if input path exists
-    if (Directory.length === 0) {
+    if (!Directory.length) {
       Loader.fail(chalk.yellow(`${chalk.bold(this.Input)} does not exist!`));
       return false;
     }
 
     // check if its empty directory
-    const filesInsideDirectory = glob.sync("**", {
-      cwd: path.join(this.Dir, this.Input),
+    const filesInsideDirectory = glob.sync(path.resolve(this.Input, "**"), { 
       ignore: this.Excludes,
     });
 
-    if (filesInsideDirectory.length === 0) {
+    if (!filesInsideDirectory.length) {
       Loader.fail(chalk.yellow(`${chalk.bold(this.Input)} is empty!`));
       return false;
     }
