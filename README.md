@@ -23,7 +23,7 @@ npm i -g wadit
 wadit
 
 # with custom configuration file
-wadit --config "wadit.config.js"
+wadit -c "wadit.config.js"
 ```
 
 If your configuration file is *wadit.config.js*, then you don't need to mention file path to CLI
